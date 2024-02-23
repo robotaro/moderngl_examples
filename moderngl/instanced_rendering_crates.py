@@ -70,7 +70,7 @@ class InstancedCrates(Example):
         # to attributes in the vertex shader with the same name.
         self.instance_data = self.ctx.buffer(reserve=12 * 1024)
         vao_wrapper = self.scene.root_nodes[0].mesh.vao
-        vao_wrapper.buffer(self.instance_data, '3f/i', 'in_move')
+        vao_wrapper.buffer(self.instance_data, '3f/i', 'in_debug_transform')
         # Create the actual vao instance (auto mapping in action)
         self.vao = vao_wrapper.instance(self.prog)
 
@@ -99,9 +99,9 @@ class InstancedCrates(Example):
         self.light.value = camera_pos
 
         crate_z = np.sin(self.crate_a * time + self.crate_b) * 0.2
-        coordinates = np.dstack([self.crate_x, self.crate_y, crate_z])
+        coordinates = np.dstack([self.crate_x, self.crate_y, crate_z]).squeeze()
 
-        self.instance_data.write(coordinates.astype('f4'))
+        self.instance_data.write(coordinates[:100, :].astype('f4'))
         self.texture.use()
         self.vao.render(instances=1024)
 

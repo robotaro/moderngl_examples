@@ -66,7 +66,7 @@ class Cubes(moderngl_window.WindowConfig):
         self.projection = Matrix44.perspective_projection(45, width / height, 1, 50, dtype='f4')
 
     def _load_texture(self, path):
-        tex = self.load_texture_2d(os.path.relpath(path, self.resource_dir))
+        tex = self.load_texture_2d(self.resource_dir)
         print(type(tex))
         return tex
 

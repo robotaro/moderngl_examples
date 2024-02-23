@@ -12,7 +12,7 @@ import PIL
 class WindowEvents(mglw.WindowConfig):
     gl_version = (3, 3)
     title = "imgui Integration"
-    resource_dir = (Path(__file__).parent / '../examples/resources').resolve()
+    resource_dir = (Path(__file__).parent / '../moderngl_window/resources').resolve()
     aspect_ratio = None
 
     def __init__(self, **kwargs):
